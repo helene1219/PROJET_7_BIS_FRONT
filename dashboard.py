@@ -7,7 +7,7 @@ import sys
 import plotly.express as px
 import shap
 import requests
-from lightgbm import LGBMClassifier
+
 # Change the console encoding
 sys.stdout.reconfigure(encoding='utf-8')
 
@@ -20,9 +20,8 @@ id_client = requests.get(f"{API_URL}/ids/").json()
 nb_credits=requests.get(f"{API_URL}/nb_credit/").json()
 rev_moy=requests.get(f"{API_URL}/rev_moyen/").json()
 credits_moy=requests.get(f"{API_URL}/credit_moyen/").json()
-data_client=requests.get(f"{API_URL}/data_client/").json()
-data_client=pd.DataFrame(data_client)
-
+df_age=requests.get(f"{API_URL}/age/").json()
+df_income=requests.get(f"{API_URL}/data_plot/").json()
             #######################################
                 # SIDEBAR
              #######################################
@@ -40,8 +39,10 @@ st.markdown(html_temp, unsafe_allow_html=True)
 st.sidebar.header("**INFORMATION GENERALE**")
 
 #Loading selectbox
-chk_id = st.sidebar.selectbox("Client ID", id_client.values())
+chk_id = st.sidebar.selectbox("Client ID", id_client)
 
+data_id=requests.get(f"{API_URL}/data_client/{chk_id}").json()
+data_client=pd.DataFrame(data_id)
 
 #Loading general info
 
@@ -66,33 +67,34 @@ st.sidebar.text(credits_moy)
 st.header(" INFORMATION CLIENT SELECTIONNE ")
 
 if st.checkbox("AFFICHER LES INFORMATIONS SUR LE CLIENT ?",key="option1"):
-    st.write(" SEXE: ", data_client["CODE_GENDER"].values[0])
-    st.write(" AGE : {:.0f} ans".format(int(data_client["DAYS_BIRTH"]/-365)))
-    st.write("SITUATION DE FAMILLE : ", data_client["NAME_FAMILY_STATUS"].values[0])
-    st.write("NOMBRE D'ENFANT : {:.0f}".format(data_client["CNT_CHILDREN"].values[0]))
+    #st.write(" SEXE: ", data_client["CODE_GENDER"].values[0])
+    #st.write(" AGE : {:.0f} ans".format(int(data_client["DAYS_BIRTH"]/-365)))
+    #st.write(" AGE : {:.0f} ans".data_client["DAYS_BIRTH"]/-365)
+    #st.write("SITUATION DE FAMILLE : ", data_client["NAME_FAMILY_STATUS"].values[0])
+    #st.write("NOMBRE D'ENFANT : {:.0f}".format(data_client["CNT_CHILDREN"].values[0]))
 
         
     #Age distribution plot
-    data_age = load_age_population(data)
+    #data_age = load_age_population(data)
     fig, ax = plt.subplots(figsize=(10, 5))
-    sns.histplot(data_age, edgecolor = 'k', color="#D54773",bins=20)
-    ax.axvline(int(-infos_client["DAYS_BIRTH"].values /365), color="black", linestyle='--')
+    sns.histplot(df_age, edgecolor = 'k', color="#D54773",bins=20)
+    #ax.axvline(int(-infos_client["DAYS_BIRTH"].values /365), color="black", linestyle='--')
     ax.set(title='AGE CLIENT', xlabel='AGE', ylabel='')
     st.pyplot(fig)
 
 
-    st.subheader("REVENU (EN €)")
-    st.write("REVENU TOTAL : {:.0f}".format(infos_client["AMT_INCOME_TOTAL"].values[0]))
-    st.write("MONTANT DU CREDIT : {:.0f}".format(infos_client["AMT_CREDIT"].values[0]))
-    st.write("ANNUITE DU CREDIT : {:.0f}".format(infos_client["AMT_ANNUITY"].values[0]))
-    st.write("MONTANT DU BIEN POUR LE CREDIT : {:.0f}".format(infos_client["AMT_GOODS_PRICE"].values[0]))
+    #st.subheader("REVENU (EN €)")
+    #st.write("REVENU TOTAL : {:.0f}".format(infos_client["AMT_INCOME_TOTAL"].values[0]))
+    #st.write("MONTANT DU CREDIT : {:.0f}".format(infos_client["AMT_CREDIT"].values[0]))
+    #st.write("ANNUITE DU CREDIT : {:.0f}".format(infos_client["AMT_ANNUITY"].values[0]))
+    #st.write("MONTANT DU BIEN POUR LE CREDIT : {:.0f}".format(infos_client["AMT_GOODS_PRICE"].values[0]))
 
 
     #Income distribution plot
     data_income = load_income_population(data)
     fig, ax = plt.subplots(figsize=(10, 5))
     sns.histplot(data_income["AMT_INCOME_TOTAL"], edgecolor = 'k', color="#D54773", bins=10)
-    ax.axvline(int(infos_client["AMT_INCOME_TOTAL"].values[0]), color="black", linestyle='--')
+    #ax.axvline(int(infos_client["AMT_INCOME_TOTAL"].values[0]), color="black", linestyle='--')
     ax.set(title='REVENU DES CLIENTS', xlabel='REVENU (EN €)', ylabel='')
     st.pyplot(fig)
 
