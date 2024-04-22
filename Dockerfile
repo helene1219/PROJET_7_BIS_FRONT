@@ -1,5 +1,5 @@
 FROM python:3.9-slim as build
-EXPOSE 8080
+EXPOSE 8000
 WORKDIR /app
 COPY . .
 RUN python3 -m pip install --upgrade pip
