@@ -28,8 +28,8 @@ def dict_to_exp(dico: dict) -> shap._explanation.Explanation:
     return explanation
 
 
-API_URL = "https://scoring-p7.onrender.com/"
-# API_URL="http://127.0.0.1:8000"
+# API_URL = "https://scoring-p7.onrender.com/"
+API_URL="http://127.0.0.1:8000"
 
 
 #Loading data……
