@@ -29,7 +29,9 @@ def dict_to_exp(dico: dict) -> shap._explanation.Explanation:
 
 
 API_URL = "https://scoring-p7.onrender.com/"
-    
+# API_URL="http://127.0.0.1:8000"
+
+
 #Loading data……
 id_client = requests.get(f"{API_URL}/ids/").json()
 nb_credits=requests.get(f"{API_URL}/nb_credit/").json()
