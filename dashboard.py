@@ -28,8 +28,8 @@ def dict_to_exp(dico: dict) -> shap._explanation.Explanation:
     return explanation
 
 
-API_URL = "https://scoring-p7.onrender.com"
-#API_URL="http://127.0.0.1:8000"
+#API_URL = "https://scoring-p7.onrender.com"
+API_URL="http://127.0.0.1:8000"
 
 
 #Loading data……
@@ -130,16 +130,19 @@ else:
     
 
 
-Feature importance / description
+#Feature importance / description
 if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
 
     shap_id=requests.get(f"{API_URL}/shap/{int(client_id)}").json()
     exp = dict_to_exp(shap_id) 
-    fig=shap.waterfall_plot(exp,show = False,max_display=10)
-    st.pyplot(fig)
+    
+    if exp.base_values ==0:
+        base_values = 0.0
+    
+    st_shap(shap.plots.waterfall(exp), height=600, width=1200)
     
 else:
-    #st.markdown("<i>…</i>", unsafe_allow_html=True)    
+    st.markdown("<i>…</i>", unsafe_allow_html=True)    
     
     
     
