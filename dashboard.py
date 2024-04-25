@@ -130,15 +130,15 @@ else:
     
 
 
-#Feature importance / description
-#if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
+Feature importance / description
+if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
 
-    #shap_id=requests.get(f"{API_URL}/shap/{int(client_id)}").json()
-    #exp = dict_to_exp(shap_id) 
-    #fig=shap.waterfall_plot(exp,show = False,max_display=10)
-    #st.pyplot(fig)
+    shap_id=requests.get(f"{API_URL}/shap/{int(client_id)}").json()
+    exp = dict_to_exp(shap_id) 
+    fig=shap.waterfall_plot(exp,show = False,max_display=10)
+    st.pyplot(fig)
     
-#else:
+else:
     #st.markdown("<i>…</i>", unsafe_allow_html=True)    
     
     
