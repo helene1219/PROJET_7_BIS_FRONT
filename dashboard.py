@@ -56,6 +56,8 @@ st.markdown(html_temp, unsafe_allow_html=True)
 #Customer ID selection
 st.sidebar.header("**INFORMATION GENERALE**")
 
+#st.write("STATUT DU CLIENT : ",type(id_client))
+
 #Loading selectbox
 client_id = st.sidebar.selectbox("Client ID", id_client)
 
@@ -133,11 +135,9 @@ else:
 #Feature importance / description
 if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
 
-    shap_id=requests.get(f"{API_URL}/shap/{client_id}").json()
+    shap_id=requests.get(f"{API_URL}/shap/{int(client_id)}").json()
     exp = dict_to_exp(shap_id) 
-    
-    if exp.base_values ==0:
-        base_values = 0.0
+
     
     st_shap(shap.plots.waterfall(exp), height=600, width=1200)
     
