@@ -140,12 +140,14 @@ if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
     exp = dict_to_exp(shap_id) 
 
     type_shap=type(exp)
+    
+    st.write("TYPE SHAP : ",type_shap)
         
     for valeur in exp.values():
         if valeur is None:
-            print("Une valeur de l'explication SHAP est de type NoneType.")
+            st.write("Une valeur de l'explication SHAP est de type NoneType.")
         else:
-            print("Une valeur de l'explication SHAP n'est pas de type NoneType.")    
+            st.write("Une valeur de l'explication SHAP n'est pas de type NoneType.")    
         
         
     st_shap(shap.plots.waterfall(exp), height=600, width=1200)
