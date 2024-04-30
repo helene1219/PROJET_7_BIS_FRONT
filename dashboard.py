@@ -143,7 +143,7 @@ if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
     
     st.write("TYPE SHAP : ",type_shap)
         
-    for valeur in exp.values():
+    for valeur in exp.values:
         if valeur is None:
             st.write("Une valeur de l'explication SHAP est de type NoneType.")
         else:
