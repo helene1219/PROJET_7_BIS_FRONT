@@ -150,7 +150,7 @@ if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
             st.write("Une valeur de l'explication SHAP n'est pas de type NoneType.")    
         
         
-    st_shap(shap.plots.waterfall(exp[:, 1]), height=600, width=1200)
+    st_shap(shap.plots.waterfall(exp[:, 0]), height=600, width=1200)
     
 else:
     st.markdown("<i>…</i>", unsafe_allow_html=True)    
