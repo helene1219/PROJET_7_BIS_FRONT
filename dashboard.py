@@ -149,14 +149,19 @@ if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
     df_feature=pd.DataFrame(feature, columns=['Feature']).reset_index()     
     
     df=pd.concat([df_shap['Valeur'], df_feature['Feature']], axis=1)
+    df_neg=df.loc[df['Valeur'] < 0].sort_values(by='Valeur', ascending=True)
+    df_pos=df.loc[df['Valeur'] > 0].sort_values(by='Valeur', ascending=False)
     df_trie = df.iloc[df['Valeur'].abs().argsort()[::-1]]
     st.write("STATUT DU CLIENT : ",df_shap.head())    
     st.write("STATUT DU CLIENT : ",df_feature.head())  
-    st.write("STATUT DU CLIENT : ",df_trie.head())     
+    st.write("STATUT DU CLIENT : ",df_neg.head())    
+    st.write("STATUT DU CLIENT : ",df_pos.head())        
+    
+    
     #df_feat=pd.DataFrame(feature)    
     #shap = list(shap_id.values())   
-    #fig = plt.bar(x=df_shap['Valeur'], y=df_feature['Feature'])
-    #st.pyplot(fig)
+    fig = plt.bar(x=df['Valeur'], y=df['Feature'])
+    st.pyplot(fig)
 else:
     st.markdown("<i>…</i>", unsafe_allow_html=True)    
     
