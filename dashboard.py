@@ -149,7 +149,7 @@ if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
     df=pd.concat([df_shap, df_feature], ignore_index=True)
     st.write("STATUT DU CLIENT : ",df_shap.head())    
     st.write("STATUT DU CLIENT : ",df_feature.head())  
-     st.write("STATUT DU CLIENT : ",df.head())     
+    st.write("STATUT DU CLIENT : ",df.head())     
     #df_feat=pd.DataFrame(feature)    
     #shap = list(shap_id.values())   
     #fig = plt.bar(x=df_shap, y=df_feat)
