@@ -20,14 +20,6 @@ from streamlit_shap import st_shap
 sys.stdout.reconfigure(encoding='utf-8')
 
 
-def dict_to_exp(dico: dict) -> shap._explanation.Explanation:
-    """
-    Convertir un dictionnaire en shap explanation
-    """
-    explanation = shap.Explanation(values=dico.values())
-    return explanation
-
-
 API_URL = "https://scoring-p7.onrender.com"
 #API_URL="http://127.0.0.1:8000"
 
@@ -57,7 +49,6 @@ st.markdown(html_temp, unsafe_allow_html=True)
 #Customer ID selection
 st.sidebar.header("**INFORMATION GENERALE**")
 
-#st.write("STATUT DU CLIENT : ",type(id_client))
 
 #Loading selectbox
 client_id = st.sidebar.selectbox("Client ID", id_client)
@@ -129,14 +120,21 @@ else:
     profil = "Client non risqué - crédit accordé"
     
 st.markdown('<h1 style="font-size:36px;"> profil </h1>', unsafe_allow_html=True)
-st.write("STATUT DU CLIENT : ",profil)
+#st.write("STATUT DU CLIENT : ",profil)
 
     
+st.subheader(" STATUT DU CLIENT ")
+html_temp = """
+<div style="background-color: #D54773; padding:10px; border-radius:10px">
+<h1 style="color: white; text-align:center"></h1>
+</div>
+
+"""
+st.markdown(html_temp, ,profil,unsafe_allow_html=True)
 
 
 #Feature importance / description
-
-st.header(" IMPORTANCE DES FEATURES ")
+st.subheader(" IMPORTANCE DES FEATURES ")
 
 shap_id=requests.get(f"{API_URL}/shap/{int(client_id)}").json()
 
