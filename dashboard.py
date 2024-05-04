@@ -139,7 +139,7 @@ if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
 
     
     shap_id=requests.get(f"{API_URL}/shap/{int(client_id)}").json()
-    premier=shap_id[1]
+    premier=type(shap_id)
     st.write("STATUT DU CLIENT : ",premier)
     #exp = dict_to_exp(shap_id) 
     #feat = list(feature.values())  
