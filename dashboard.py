@@ -148,14 +148,14 @@ if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
     df_shap=pd.DataFrame.from_dict(shap_id, orient='index', columns=['Valeur'])
     df_feature=pd.DataFrame(feature, columns=['Feature'])     
     
-    df=pd.concat([df_shap, df_feature], axis=1, ignore_index=True)
+    #df=pd.concat([df_shap, df_feature], axis=1, ignore_index=True)
     st.write("STATUT DU CLIENT : ",df_shap.head())    
     st.write("STATUT DU CLIENT : ",df_feature.head())  
-    st.write("STATUT DU CLIENT : ",df.head())     
+    #st.write("STATUT DU CLIENT : ",df.head())     
     #df_feat=pd.DataFrame(feature)    
     #shap = list(shap_id.values())   
-    #fig = plt.bar(x=df_shap, y=df_feat)
-    #st.pyplot(fig)
+    fig = plt.bar(x=df_shap['Value'], y=df_feature['Feature'])
+    st.pyplot(fig)
 else:
     st.markdown("<i>…</i>", unsafe_allow_html=True)    
     
