@@ -134,37 +134,35 @@ else:
 
 
 #Feature importance / description
-if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
 
-    
-    shap_id=requests.get(f"{API_URL}/shap/{int(client_id)}").json()
+st.header(" IMPORTANCE DES FEATURES ")
+
+shap_id=requests.get(f"{API_URL}/shap/{int(client_id)}").json()
 
 
-    df_shap=pd.DataFrame.from_dict(shap_id, orient='index', columns=['Valeur']).reset_index()
-    df_feature=pd.DataFrame(feature, columns=['Feature']).reset_index()     
+df_shap=pd.DataFrame.from_dict(shap_id, orient='index', columns=['Valeur']).reset_index()
+df_feature=pd.DataFrame(feature, columns=['Feature']).reset_index()     
     
-    df=pd.concat([df_shap['Valeur'], df_feature['Feature']], axis=1)
-    df_neg=df.loc[df['Valeur'] < 0].sort_values(by='Valeur', ascending=True)
-    df_pos=df.loc[df['Valeur'] > 0].sort_values(by='Valeur', ascending=False)
+df=pd.concat([df_shap['Valeur'], df_feature['Feature']], axis=1)
+df_neg=df.loc[df['Valeur'] < 0].sort_values(by='Valeur', ascending=True)
+df_pos=df.loc[df['Valeur'] > 0].sort_values(by='Valeur', ascending=False)
 
-    st.write("FEATURES AYANT DES VALEURS DE SHAP NEGATIVES : ",df_neg.head())    
+st.write("FEATURES AYANT DES VALEURS DE SHAP NEGATIVES : ",df_neg.head())    
     
-    fig, ax = plt.subplots(figsize=(10, 5))
-    df=df_neg[:10]
-    sns.barplot(df, x="Valeur", y="Feature")
-    st.pyplot(fig)   
+fig, ax = plt.subplots(figsize=(10, 5))
+df=df_neg[:10]
+sns.barplot(df, x="Valeur", y="Feature", color="#D54773")
+st.pyplot(fig)   
     
     
     
-    st.write("FEATURES AYANT DES VALEURS DE SHAP POSTIVIES : ",df_pos.head())         
+st.write("FEATURES AYANT DES VALEURS DE SHAP POSTIVIES : ",df_pos.head())         
        
-    fig, ax = plt.subplots(figsize=(10, 5))
-    df=df_pos[:10]
-    sns.barplot(df, x="Valeur", y="Feature")
-    st.pyplot(fig)
-else:
-    st.markdown("<i>…</i>", unsafe_allow_html=True)    
-    
+fig, ax = plt.subplots(figsize=(10, 5))
+df=df_pos[:10]
+sns.barplot(df, x="Valeur", y="Feature", color="#D54773")
+st.pyplot(fig)
+
     
     
 
