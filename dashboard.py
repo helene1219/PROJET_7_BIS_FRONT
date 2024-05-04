@@ -115,24 +115,29 @@ st.subheader(" STATUT DU CLIENT ")
 st.header(" ANALYSE CREDIT DEMANDE ")
 statut=requests.get(f"{API_URL}/prediction/{int(client_id)}").json()
 
+if statut==0:
+    html_temp = """
+    <div style="background-color: #D54773; padding:10px; border-radius:10px">
+    <h1 style="color: white; text-align:center">Client Risqué - CREDIT NON ACCORDE</h1>
+    </div>
+    
+    """
+    st.markdown(html_temp, unsafe_allow_html=True)
 
+else:
+    html_temp = """
+    <div style="background-color: #D54773; padding:10px; border-radius:10px">
+    <h1 style="color: white; text-align:center">Client Non Risqué - CREDIT ACCORDE</h1>
+    </div>
+    
+    """
+    st.markdown(html_temp, unsafe_allow_html=True)
 
 if statut==0:
     profil="client risque - crédit non accordé"
 else:
     profil = "Client non risqué - crédit accordé"
     
-st.write("STATUT DU CLIENT : ",profil)
-
-    
-html_temp = """
-<div style="background-color: #D54773; padding:10px; border-radius:10px">
-<h1 style="color: white; text-align:center"></h1>
-</div>
-
-"""
-st.write(html_temp,profil,unsafe_allow_html=True)
-
 #Feature importance / description
 st.subheader(" IMPORTANCE DES FEATURES ")
 
