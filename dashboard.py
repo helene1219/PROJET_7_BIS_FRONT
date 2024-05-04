@@ -122,11 +122,13 @@ st.header(" ANALYSE CREDIT DEMANDE ")
 statut=requests.get(f"{API_URL}/prediction/{int(client_id)}").json()
 
 
-st.markdown('<h1 style="font-size:36px;">Texte en taille 36px</h1>', unsafe_allow_html=True)
+
 if statut==0:
     profil="client risque - crédit non accordé"
 else:
     profil = "Client non risqué - crédit accordé"
+    
+st.markdown('<h1 style="font-size:36px;"> profil </h1>', unsafe_allow_html=True)
 st.write("STATUT DU CLIENT : ",profil)
 
     
