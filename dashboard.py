@@ -142,11 +142,11 @@ if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
     type_shap=type(shap_id)
     
     st.write("TYPE SHAP : ",type_shap)
-        
-    cles = list(shap_id.keys())
-    valeurs = list(shap_id.values())
+    st.write("TYPE SHAP : ",print(shap_id))
+    #cles = list(shap_id.keys())
+    #valeurs = list(shap_id.values())
     
-    plt.bar(cles, valeurs)
+    #plt.bar(cles, valeurs)
         
     #st_shap(shap.plots.waterfall(exp), height=600, width=1200)
     #shap.waterfall_plot(exp,show = False)
