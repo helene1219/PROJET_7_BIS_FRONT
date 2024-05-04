@@ -144,7 +144,7 @@ if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
     st.write("STATUT DU CLIENT : ",type_df)   
     #exp = dict_to_exp(shap_id) 
     #feat = list(feature.values())  
-    df_shap=pd.DataFrame(shap_id, orient='index', columns=['Valeur'])
+    df_shap=pd.DataFrame.from_dict(shap_id, orient='index', columns=['Valeur'])
     st.write("STATUT DU CLIENT : ",df_shap.head())     
     #df_feat=pd.DataFrame(feature)    
     #shap = list(shap_id.values())   
