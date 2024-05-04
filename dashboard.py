@@ -141,15 +141,11 @@ if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
     shap_id=requests.get(f"{API_URL}/shap/{int(client_id)}").json()
     type_df=type(shap_id)
     
-    st.write("STATUT DU CLIENT : ",type_df)
-
-    
-    st.write("STATUT DU CLIENT : ",print(shap_id))   
-    
-    
+    st.write("STATUT DU CLIENT : ",type_df)   
     #exp = dict_to_exp(shap_id) 
     #feat = list(feature.values())  
-    #df_shap=pd.DataFrame(shap_id)
+    df_shap=pd.DataFrame(shap_id)
+    st.write("STATUT DU CLIENT : ",df_shap.head()      
     #df_feat=pd.DataFrame(feature)    
     #shap = list(shap_id.values())   
     #fig = plt.bar(x=df_shap, y=df_feat)
