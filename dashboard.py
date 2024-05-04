@@ -142,14 +142,9 @@ if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
     type_shap=type(shap_id)
     
     st.write("TYPE SHAP : ",type_shap)
-    
-    cles = list(shap_id.keys())
-    #valeurs = list(shap_id.values())
-    st.write("TYPE SHAP : ",print(cles))
-    #plt.bar(cles, valeurs)
-        
-    #st_shap(shap.plots.waterfall(exp), height=600, width=1200)
-    #shap.waterfall_plot(exp,show = False)
+    fig, ax = plt.subplots(figsize=(10, 10))
+    shap.summary_plot(shap_id, X_train_sample, plot_type ="bar", max_display=10, color_bar=False, plot_size=(5, 5))
+    st.pyplot(fig)
 else:
     st.markdown("<i>…</i>", unsafe_allow_html=True)    
     
