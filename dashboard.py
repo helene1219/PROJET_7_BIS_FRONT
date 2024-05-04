@@ -141,7 +141,7 @@ if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
     shap_id=requests.get(f"{API_URL}/shap/{int(client_id)}").json()
     #exp = dict_to_exp(shap_id) 
     df = pd.DataFrame.from_dict(feature)
-    df_shap = pd.DataFrame.from_dict(shap_id)    
+    df_shap = pd.DataFrame.from_dict(shap_id, orient='index')    
     fig = go.Figure(data=[
     go.Bar(name='Importance Feature', x=df, y=df_shap,marker_color='rgb(150,159,167)')
     ])
