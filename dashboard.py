@@ -137,15 +137,15 @@ if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
 
     
     shap_id=requests.get(f"{API_URL}/shap/{int(client_id)}").json()
-    exp = dict_to_exp(shap_id) 
+    #exp = dict_to_exp(shap_id) 
 
-    type_shap=type(exp)
+    type_shap=type(shap_id)
     
     st.write("TYPE SHAP : ",type_shap)
         
         
     #st_shap(shap.plots.waterfall(exp), height=600, width=1200)
-    shap.waterfall_plot(exp,show = False)
+    #shap.waterfall_plot(exp,show = False)
 else:
     st.markdown("<i>…</i>", unsafe_allow_html=True)    
     
