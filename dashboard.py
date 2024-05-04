@@ -142,7 +142,7 @@ if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
     type_shap=type(shap_id)
     
     st.write("TYPE SHAP : ",type_shap)
-    st.write("TYPE SHAP : ",len(exp))
+    st.write("TYPE SHAP : ",len(shap_id))
     #cles = list(shap_id.keys())
     #valeurs = list(shap_id.values())
     
