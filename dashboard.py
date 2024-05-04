@@ -107,6 +107,9 @@ ax.axvline(int(data_client["AMT_INCOME_TOTAL"].values[0]), color="black", linest
 ax.set(title='REVENU DES CLIENTS', xlabel='REVENU (EN €)', ylabel='')
 st.pyplot(fig)
 st.markdown("<i>…</i>", unsafe_allow_html=True)
+
+
+st.subheader(" STATUT DU CLIENT ")
     
 #Customer solvability display
 st.header(" ANALYSE CREDIT DEMANDE ")
@@ -119,19 +122,16 @@ if statut==0:
 else:
     profil = "Client non risqué - crédit accordé"
     
-st.markdown('<h1 style="font-size:36px;"> profil </h1>', unsafe_allow_html=True)
-#st.write("STATUT DU CLIENT : ",profil)
+st.write("STATUT DU CLIENT : ",profil)
 
     
-st.subheader(" STATUT DU CLIENT ")
 html_temp = """
 <div style="background-color: #D54773; padding:10px; border-radius:10px">
 <h1 style="color: white; text-align:center"></h1>
 </div>
 
 """
-st.markdown(html_temp,profil,unsafe_allow_html=True)
-
+st.write(html_temp,profil,unsafe_allow_html=True)
 
 #Feature importance / description
 st.subheader(" IMPORTANCE DES FEATURES ")
