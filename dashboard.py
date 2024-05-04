@@ -87,49 +87,48 @@ st.sidebar.text(credits_moy)
 #Customer information display : Customer Gender, Age, Family status, Children, …
 st.header(" INFORMATION CLIENT SELECTIONNE ")
 
-if st.checkbox("AFFICHER LES INFORMATIONS SUR LE CLIENT ?",key="option1"):
-    st.write(" SEXE: ", data_client["CODE_GENDER"].values[0])
-    st.write(" AGE : {:.0f} ans".format(int(data_client["DAYS_BIRTH"])))
-    st.write("SITUATION DE FAMILLE : ", data_client["NAME_FAMILY_STATUS"].values[0])
+st.write(" SEXE: ", data_client["CODE_GENDER"].values[0])
+st.write(" AGE : {:.0f} ans".format(int(data_client["DAYS_BIRTH"])))
+st.write("SITUATION DE FAMILLE : ", data_client["NAME_FAMILY_STATUS"].values[0])
 
        
-    #Age distribution plot
-    data_age=pd.DataFrame(df_age)
-    fig, ax = plt.subplots(figsize=(10, 5))
-    sns.histplot(data_age["DAYS_BIRTH"], edgecolor = 'k', color="#D54773",bins=20)
-    ax.axvline(int(data_client["DAYS_BIRTH"].values), color="black", linestyle='--')
-    ax.set(title='AGE CLIENT', xlabel='AGE', ylabel='')
-    st.pyplot(fig)
+#Age distribution plot
+data_age=pd.DataFrame(df_age)
+fig, ax = plt.subplots(figsize=(10, 5))
+sns.histplot(data_age["DAYS_BIRTH"], edgecolor = 'k', color="#D54773",bins=20)
+ax.axvline(int(data_client["DAYS_BIRTH"].values), color="black", linestyle='--')
+ax.set(title='AGE CLIENT', xlabel='AGE', ylabel='')
+st.pyplot(fig)
 
 
-    st.subheader("REVENU (EN €)")
-    st.write("REVENU TOTAL : {:.0f}".format(data_client["AMT_INCOME_TOTAL"].values[0]))
-    st.write("MONTANT DU CREDIT : {:.0f}".format(data_client["AMT_CREDIT"].values[0]))
-    st.write("ANNUITE DU CREDIT : {:.0f}".format(data_client["AMT_ANNUITY"].values[0]))
-    st.write("MONTANT DU BIEN POUR LE CREDIT : {:.0f}".format(data_client["AMT_GOODS_PRICE"].values[0]))
+st.subheader("REVENU (EN €)")
+st.write("REVENU TOTAL : {:.0f}".format(data_client["AMT_INCOME_TOTAL"].values[0]))
+st.write("MONTANT DU CREDIT : {:.0f}".format(data_client["AMT_CREDIT"].values[0]))
+st.write("ANNUITE DU CREDIT : {:.0f}".format(data_client["AMT_ANNUITY"].values[0]))
+st.write("MONTANT DU BIEN POUR LE CREDIT : {:.0f}".format(data_client["AMT_GOODS_PRICE"].values[0]))
 
 
-    #Income distribution plot
-    data_income=pd.DataFrame(df_income)
-    fig, ax = plt.subplots(figsize=(10, 5))
-    sns.histplot(data_income["AMT_INCOME_TOTAL"], edgecolor = 'k', color="#D54773", bins=20)
-    ax.axvline(int(data_client["AMT_INCOME_TOTAL"].values[0]), color="black", linestyle='--')
-    ax.set(title='REVENU DES CLIENTS', xlabel='REVENU (EN €)', ylabel='')
-    st.pyplot(fig)
-    st.markdown("<i>…</i>", unsafe_allow_html=True)
+#Income distribution plot
+data_income=pd.DataFrame(df_income)
+fig, ax = plt.subplots(figsize=(10, 5))
+sns.histplot(data_income["AMT_INCOME_TOTAL"], edgecolor = 'k', color="#D54773", bins=20)
+ax.axvline(int(data_client["AMT_INCOME_TOTAL"].values[0]), color="black", linestyle='--')
+ax.set(title='REVENU DES CLIENTS', xlabel='REVENU (EN €)', ylabel='')
+st.pyplot(fig)
+st.markdown("<i>…</i>", unsafe_allow_html=True)
     
-    #Customer solvability display
-    st.header(" ANALYSE CREDIT DEMANDE ")
-    statut=requests.get(f"{API_URL}/prediction/{int(client_id)}").json()
-    
-    if statut==0:
-        profil="client risque - crédit non accordé"
-    else:
-        profil = "Client non risqué - crédit accordé"
-    st.write("STATUT DU CLIENT : ",profil)
+#Customer solvability display
+st.header(" ANALYSE CREDIT DEMANDE ")
+statut=requests.get(f"{API_URL}/prediction/{int(client_id)}").json()
 
+
+st.markdown('<h1 style="font-size:36px;">Texte en taille 36px</h1>', unsafe_allow_html=True)
+if statut==0:
+    profil="client risque - crédit non accordé"
 else:
-    st.markdown("<i>…</i>", unsafe_allow_html=True)  
+    profil = "Client non risqué - crédit accordé"
+st.write("STATUT DU CLIENT : ",profil)
+
     
 
 
