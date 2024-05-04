@@ -143,7 +143,7 @@ if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
     
     st.write("TYPE SHAP : ",type_shap)
     fig, ax = plt.subplots(figsize=(10, 10))
-    shap.summary_plot(shap_id, X_train_sample, plot_type ="bar", max_display=10, color_bar=False, plot_size=(5, 5))
+    shap.summary_plot(shap_id,plot_type ="bar", max_display=10, color_bar=False, plot_size=(5, 5))
     st.pyplot(fig)
 else:
     st.markdown("<i>…</i>", unsafe_allow_html=True)    
