@@ -151,8 +151,8 @@ if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
     type_shap=type(df_shap)
     type_feature=type(df_feature)    
     
-    st.write("STATUT DU CLIENT : ",print(type_shap))   
-    st.write("STATUT DU CLIENT : ",print(type_feature))   
+    st.write("STATUT DU CLIENT : ",type_shap)   
+    st.write("STATUT DU CLIENT : ",type_feature)
     
     df=pd.concat([df_shap, df_feature], ignore_index=True,axis=1)
     st.write("STATUT DU CLIENT : ",df_shap.head())    
