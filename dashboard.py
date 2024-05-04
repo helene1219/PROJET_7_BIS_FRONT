@@ -139,11 +139,7 @@ if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
     
     shap_id=requests.get(f"{API_URL}/shap/{int(client_id)}").json()
 
-    
-    
-    
-    #exp = dict_to_exp(shap_id) 
-    #feat = list(feature.values())  
+
     df_shap=pd.DataFrame.from_dict(shap_id, orient='index', columns=['Valeur']).reset_index()
     df_feature=pd.DataFrame(feature, columns=['Feature']).reset_index()     
     
@@ -152,12 +148,19 @@ if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
     df_pos=df.loc[df['Valeur'] > 0].sort_values(by='Valeur', ascending=False)
 
     st.write("FEATURES AYANT DES VALEURS DE SHAP NEGATIVES : ",df_neg.head())    
-    st.write("FEATURES AYANT DES VALEURS DE SHAP POSTIVIES : ",df_pos.head())         
     
-    #df_feat=pd.DataFrame(feature)    
-    #shap = list(shap_id.values())   
     fig, ax = plt.subplots(figsize=(10, 5))
-    sns.barplot(df_pos, x="Valeur", y="Feature")
+    df=df_neg[:10]
+    sns.barplot(df, x="Valeur", y="Feature")
+    st.pyplot(fig)   
+    
+    
+    
+    st.write("FEATURES AYANT DES VALEURS DE SHAP POSTIVIES : ",df_pos.head())         
+       
+    fig, ax = plt.subplots(figsize=(10, 5))
+    df=df_pos[:10]
+    sns.barplot(df, x="Valeur", y="Feature")
     st.pyplot(fig)
 else:
     st.markdown("<i>…</i>", unsafe_allow_html=True)    
