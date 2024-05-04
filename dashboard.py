@@ -140,9 +140,9 @@ if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
     
     shap_id=requests.get(f"{API_URL}/shap/{int(client_id)}").json()
     #exp = dict_to_exp(shap_id) 
-    df = pd.DataFrame.from_dict(feature)
-    df_shap = pd.DataFrame.from_dict(shap_id, orient='index')    
-    fig = plt.bar(x=df_shap, y=df,color="orange")
+    feat = list(feature.values())  
+    shap = list(shap_id.values())   
+    fig = plt.bar(x=feat, y=shap,color="orange")
     st.pyplot(fig)
 else:
     st.markdown("<i>…</i>", unsafe_allow_html=True)    
