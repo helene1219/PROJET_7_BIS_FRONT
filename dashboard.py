@@ -150,8 +150,8 @@ if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
     
     len_shap=len(df_shap)
     len_feature=len(df_feature)    
-    st.write("STATUT DU CLIENT : ",print(len_shap))    
-    st.write("STATUT DU CLIENT : ",print(len_feature))     
+    st.write("STATUT DU CLIENT : ",len_shap)    
+    st.write("STATUT DU CLIENT : ",len_feature)     
     
     df=pd.concat([df_shap, df_feature], ignore_index=True,axis=1)
     st.write("STATUT DU CLIENT : ",df_shap.head())    
