@@ -149,6 +149,7 @@ if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
     df_feature=pd.DataFrame(feature, columns=['Feature']).reset_index()     
     
     df=pd.concat([df_shap['Valeur'], df_feature['Feature']], axis=1)
+    df_trie = df.iloc[df['Valeur'].abs().argsort()[::-1]]
     st.write("STATUT DU CLIENT : ",df_shap.head())    
     st.write("STATUT DU CLIENT : ",df_feature.head())  
     st.write("STATUT DU CLIENT : ",df.head())     
