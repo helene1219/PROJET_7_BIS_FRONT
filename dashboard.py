@@ -156,7 +156,8 @@ if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
     
     #df_feat=pd.DataFrame(feature)    
     #shap = list(shap_id.values())   
-    fig = sns.barplot(df_pos, x="Valeur", y="Feature")
+    sns.barplot(df_pos, x="Valeur", y="Feature")
+    fig = plt.savefig('graphique.png')
     st.pyplot(fig)
 else:
     st.markdown("<i>…</i>", unsafe_allow_html=True)    
