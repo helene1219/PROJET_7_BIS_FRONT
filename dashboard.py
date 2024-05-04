@@ -145,7 +145,7 @@ if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
     #exp = dict_to_exp(shap_id) 
     #feat = list(feature.values())  
     df_shap=pd.DataFrame(shap_id)
-    st.write("STATUT DU CLIENT : ",df_shap.head()      
+    st.write("STATUT DU CLIENT : ",df_shap.head())     
     #df_feat=pd.DataFrame(feature)    
     #shap = list(shap_id.values())   
     #fig = plt.bar(x=df_shap, y=df_feat)
