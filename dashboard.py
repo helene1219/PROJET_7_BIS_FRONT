@@ -138,13 +138,13 @@ if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
     
     shap_id=requests.get(f"{API_URL}/shap/{int(client_id)}").json()
     #exp = dict_to_exp(shap_id) 
-
-    type_shap=type(shap_id)
+    premier_element = shap_id.popitem()
+    #type_shap=type(shap_id)
     
-    st.write("TYPE SHAP : ",type_shap)
-    fig, ax = plt.subplots(figsize=(10, 10))
-    shap.summary_plot(shap_id,index,plot_type ="bar", max_display=10, color_bar=False, plot_size=(5, 5))
-    st.pyplot(fig)
+    st.write("1er : ",premier_element)
+    #fig, ax = plt.subplots(figsize=(10, 10))
+    #shap.summary_plot(shap_id,index,plot_type ="bar", max_display=10, color_bar=False, plot_size=(5, 5))
+    #st.pyplot(fig)
 else:
     st.markdown("<i>…</i>", unsafe_allow_html=True)    
     
