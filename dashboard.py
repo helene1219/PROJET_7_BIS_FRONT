@@ -142,7 +142,7 @@ if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
     #exp = dict_to_exp(shap_id) 
     df = pd.DataFrame.from_dict(feature)
     fig = go.Figure(data=[
-    go.Bar(name='Importance Feature', x=df['feature'], y=shap_id,marker_color='rgb(150,159,167)')
+    go.Bar(name='Importance Feature', x=df, y=shap_id,marker_color='rgb(150,159,167)')
     ])
     st.pyplot(fig)
 else:
