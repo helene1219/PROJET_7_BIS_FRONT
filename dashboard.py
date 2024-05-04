@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import sys
 import plotly.express as px
-import plotly.graph_objects as go
 
 import requests
 import shap
@@ -156,7 +155,7 @@ if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
     st.write("STATUT DU CLIENT : ",df_feature.head())  
     st.write("STATUT DU CLIENT : ",df_neg.head())    
     st.write("STATUT DU CLIENT : ",df_pos.head())        
-    
+    st.write("STATUT DU CLIENT : ",print(df['Valeur'])        
     
     #df_feat=pd.DataFrame(feature)    
     #shap = list(shap_id.values())   
