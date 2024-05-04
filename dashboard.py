@@ -150,17 +150,14 @@ if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
     df=pd.concat([df_shap['Valeur'], df_feature['Feature']], axis=1)
     df_neg=df.loc[df['Valeur'] < 0].sort_values(by='Valeur', ascending=True)
     df_pos=df.loc[df['Valeur'] > 0].sort_values(by='Valeur', ascending=False)
-    st.write("STATUT DU CLIENT : ",df_shap.head())    
-    st.write("STATUT DU CLIENT : ",df_feature.head())  
-    st.write("STATUT DU CLIENT : ",df_neg.head())    
-    st.write("STATUT DU CLIENT : ",df_pos.head())        
-    typeff=df.dtypes
-    st.write("STATUT DU CLIENT : ",print(typeff))       
+
+    st.write("FEATURES AYANT DES VALEURS DE SHAP NEGATIVES : ",df_neg.head())    
+    st.write("FEATURES AYANT DES VALEURS DE SHAP POSTIVIES : ",df_pos.head())         
     
     #df_feat=pd.DataFrame(feature)    
     #shap = list(shap_id.values())   
-    fig = plt.bar(x=df_neg['Valeur'], y=df_neg['Feature'])
-    #st.pyplot(fig)
+    fig = sns.barplot(df_pos, x="Valeur", y="Feature")
+    st.pyplot(fig)
 else:
     st.markdown("<i>…</i>", unsafe_allow_html=True)    
     
