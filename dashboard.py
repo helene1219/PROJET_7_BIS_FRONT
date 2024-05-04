@@ -155,7 +155,7 @@ if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
     st.write("STATUT DU CLIENT : ",df_feature.head())  
     st.write("STATUT DU CLIENT : ",df_neg.head())    
     st.write("STATUT DU CLIENT : ",df_pos.head())        
-    st.write("STATUT DU CLIENT : ",print(df['Valeur'])        
+    st.write("STATUT DU CLIENT : ",print(df['Valeur']) )       
     
     #df_feat=pd.DataFrame(feature)    
     #shap = list(shap_id.values())   
