@@ -142,7 +142,7 @@ if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
     #exp = dict_to_exp(shap_id) 
     df = pd.DataFrame.from_dict(feature)
     df_shap = pd.DataFrame.from_dict(shap_id, orient='index')    
-    fig = plt.bar(df, df_shap,color="orange")
+    fig = plt.bar(x=df_shap, y=df,color="orange")
     st.pyplot(fig)
 else:
     st.markdown("<i>…</i>", unsafe_allow_html=True)    
