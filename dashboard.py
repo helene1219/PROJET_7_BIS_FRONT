@@ -155,12 +155,13 @@ if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
     st.write("STATUT DU CLIENT : ",df_feature.head())  
     st.write("STATUT DU CLIENT : ",df_neg.head())    
     st.write("STATUT DU CLIENT : ",df_pos.head())        
-    st.write("STATUT DU CLIENT : ",print(df.dtypes) )       
+    typeff=df.dtypes
+    st.write("STATUT DU CLIENT : ",print(typeff))       
     
     #df_feat=pd.DataFrame(feature)    
     #shap = list(shap_id.values())   
-    fig = plt.bar(x=df['Valeur'], y=df['Feature'])
-    st.pyplot(fig)
+    #fig = plt.bar(x=df['Valeur'], y=df['Feature'])
+    #st.pyplot(fig)
 else:
     st.markdown("<i>…</i>", unsafe_allow_html=True)    
     
