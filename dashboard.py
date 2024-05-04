@@ -39,6 +39,7 @@ rev_moy=requests.get(f"{API_URL}/rev_moyen/").json()
 credits_moy=requests.get(f"{API_URL}/credit_moyen/").json()
 df_age=requests.get(f"{API_URL}/data_age/").json()
 df_income=requests.get(f"{API_URL}/data_income/").json()
+feature=requests.get(f"{API_URL}/feature/").json()
 
             #######################################
                 # SIDEBAR
@@ -138,13 +139,10 @@ if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
     
     shap_id=requests.get(f"{API_URL}/shap/{int(client_id)}").json()
     #exp = dict_to_exp(shap_id) 
-    premier_element = shap_id.popitem()
-    #type_shap=type(shap_id)
     
-    st.write("1er : ",premier_element)
-    #fig, ax = plt.subplots(figsize=(10, 10))
-    #shap.summary_plot(shap_id,index,plot_type ="bar", max_display=10, color_bar=False, plot_size=(5, 5))
-    #st.pyplot(fig)
+    fig, ax = plt.subplots(figsize=(10, 10))
+    shap.summary_plot(shap_id,index,feature,plot_type ="bar", max_display=10, color_bar=False, plot_size=(5, 5))
+    st.pyplot(fig)
 else:
     st.markdown("<i>…</i>", unsafe_allow_html=True)    
     
