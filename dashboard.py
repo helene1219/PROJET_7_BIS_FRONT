@@ -140,8 +140,9 @@ if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
     shap_id=requests.get(f"{API_URL}/shap/{int(client_id)}").json()
     #exp = dict_to_exp(shap_id) 
     
-    fig, ax = plt.subplots(figsize=(10, 10))
-    shap.summary_plot(shap_id,feature,plot_type ="bar", max_display=10, color_bar=False, plot_size=(5, 5))
+    fig = go.Figure(data=[
+    go.Bar(name='Importance Feature', x=feature, y=shap_id,marker_color='rgb(150,159,167)')
+    ])
     st.pyplot(fig)
 else:
     st.markdown("<i>…</i>", unsafe_allow_html=True)    
