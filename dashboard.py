@@ -148,7 +148,7 @@ if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
     df_shap=pd.DataFrame.from_dict(shap_id, orient='index', columns=['Valeur']).reset_index()
     df_feature=pd.DataFrame(feature, columns=['Feature']).reset_index()     
     
-    df=pd.concat([df_shap, df_feature], axis=, ignore_index=True)
+    df=pd.concat([df_shap, df_feature], axis=1)
     st.write("STATUT DU CLIENT : ",df_shap.head())    
     st.write("STATUT DU CLIENT : ",df_feature.head())  
     #st.write("STATUT DU CLIENT : ",df.head())     
