@@ -130,7 +130,7 @@ html_temp = """
 </div>
 
 """
-st.markdown(html_temp, ,profil,unsafe_allow_html=True)
+st.markdown(html_temp,profil,unsafe_allow_html=True)
 
 
 #Feature importance / description
