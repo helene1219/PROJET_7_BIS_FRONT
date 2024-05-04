@@ -86,7 +86,7 @@ st.write("SITUATION DE FAMILLE : ", data_client["NAME_FAMILY_STATUS"].values[0])
 #Age distribution plot
 data_age=pd.DataFrame(df_age)
 fig, ax = plt.subplots(figsize=(10, 5))
-sns.histplot(data_age["DAYS_BIRTH"], edgecolor = 'k', color="#D54773",bins=20)
+sns.histplot(data_age["DAYS_BIRTH"], edgecolor = 'k', color="#ADADAD",bins=20)
 ax.axvline(int(data_client["DAYS_BIRTH"].values), color="black", linestyle='--')
 ax.set(title='AGE CLIENT', xlabel='AGE', ylabel='')
 st.pyplot(fig)
@@ -102,7 +102,7 @@ st.write("MONTANT DU BIEN POUR LE CREDIT : {:.0f}".format(data_client["AMT_GOODS
 #Income distribution plot
 data_income=pd.DataFrame(df_income)
 fig, ax = plt.subplots(figsize=(10, 5))
-sns.histplot(data_income["AMT_INCOME_TOTAL"], edgecolor = 'k', color="#D54773", bins=20)
+sns.histplot(data_income["AMT_INCOME_TOTAL"], edgecolor = 'k', color="#ADADAD", bins=20)
 ax.axvline(int(data_client["AMT_INCOME_TOTAL"].values[0]), color="black", linestyle='--')
 ax.set(title='REVENU DES CLIENTS', xlabel='REVENU (EN €)', ylabel='')
 st.pyplot(fig)
@@ -117,7 +117,7 @@ statut=requests.get(f"{API_URL}/prediction/{int(client_id)}").json()
 
 if statut==0:
     html_temp = """
-    <div style="background-color: #D54773; padding:10px; border-radius:10px">
+    <div style="background-color: #D54773; padding:2px; border-radius:2px">
     <h1 style="color: white; text-align:center">Client Risqué - CREDIT NON ACCORDE</h1>
     </div>
     
@@ -126,17 +126,15 @@ if statut==0:
 
 else:
     html_temp = """
-    <div style="background-color: #D54773; padding:10px; border-radius:10px">
+    <div style="background-color: #D54773; padding:2px; border-radius:2px">
     <h1 style="color: white; text-align:center">Client Non Risqué - CREDIT ACCORDE</h1>
     </div>
     
     """
     st.markdown(html_temp, unsafe_allow_html=True)
 
-if statut==0:
-    profil="client risque - crédit non accordé"
-else:
-    profil = "Client non risqué - crédit accordé"
+st.write("")
+st.write("")
     
 #Feature importance / description
 st.subheader(" IMPORTANCE DES FEATURES ")
@@ -155,7 +153,7 @@ st.write("FEATURES AYANT DES VALEURS DE SHAP NEGATIVES : ",df_neg.head())
     
 fig, ax = plt.subplots(figsize=(10, 5))
 df=df_neg[:10]
-sns.barplot(df, x="Valeur", y="Feature", color="#D54773")
+sns.barplot(df, x="Valeur", y="Feature", color="#ADADAD")
 st.pyplot(fig)   
     
     
@@ -164,7 +162,7 @@ st.write("FEATURES AYANT DES VALEURS DE SHAP POSTIVIES : ",df_pos.head())
        
 fig, ax = plt.subplots(figsize=(10, 5))
 df=df_pos[:10]
-sns.barplot(df, x="Valeur", y="Feature", color="#D54773")
+sns.barplot(df, x="Valeur", y="Feature", color="#ADADAD")
 st.pyplot(fig)
 
     
