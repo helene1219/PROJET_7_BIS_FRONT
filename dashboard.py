@@ -142,7 +142,7 @@ if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
     #exp = dict_to_exp(shap_id) 
     feat = list(feature.values())  
     shap = list(shap_id.values())   
-    fig = plt.bar(x=feat, y=shap)
+    fig = plt.bar(x=feature, y=shap_id)
     st.pyplot(fig)
 else:
     st.markdown("<i>…</i>", unsafe_allow_html=True)    
