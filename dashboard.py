@@ -144,7 +144,7 @@ if st.checkbox("AFFICHER LES RESULTATS SUR LE CLIENT ?",key="Option2"):
     st.write("STATUT DU CLIENT : ",type_df)
 
     
-    st.write("STATUT DU CLIENT : ",print(shap_id)   
+    st.write("STATUT DU CLIENT : ",print(shap_id))   
     
     
     #exp = dict_to_exp(shap_id) 
