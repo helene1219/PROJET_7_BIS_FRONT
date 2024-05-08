@@ -1,6 +1,6 @@
 
 
-
+# Importation librairie
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -33,11 +33,11 @@ df_age=requests.get(f"{API_URL}/data_age/").json()
 df_income=requests.get(f"{API_URL}/data_income/").json()
 feature=requests.get(f"{API_URL}/feature/").json()
 
-            #######################################
-                # SIDEBAR
-             #######################################
+#######################################
+# SIDEBAR
+#######################################
 
-                #Title display
+
 html_temp = """
 <div style="background-color: #D54773; padding:10px; border-radius:10px">
 <h1 style="color: white; text-align:center">Dashboard Scoring Credit</h1>
@@ -46,36 +46,32 @@ html_temp = """
 """
 st.markdown(html_temp, unsafe_allow_html=True)
 
-#Customer ID selection
 st.sidebar.header("**INFORMATION GENERALE**")
 
 
-#Loading selectbox
+#Selection de l'id_client
 client_id = st.sidebar.selectbox("Client ID", id_client)
 
 response=requests.get(f"{API_URL}/data_client/{int(client_id)}").json()
 
 data_client=pd.DataFrame(response)
-#Loading general info
 
-
-### Display of information in the sidebar ###
-#Number of loans in the sample
+#Nombre de crédit dans échantillon
 st.sidebar.markdown("<u>NOMBRE DE CREDIT :</u>", unsafe_allow_html=True)
 st.sidebar.text(nb_credits)
 
-#Average income
+#Revenu moyen
 st.sidebar.markdown("<u>REVENU MOYEN DATA:</u>", unsafe_allow_html=True)
 st.sidebar.text(int(rev_moy))
 
-#AMT CREDIT
+#Montant crédit moyen
 st.sidebar.markdown("<u>MONTANT MOYEN DU CREDIT DATA :</u>", unsafe_allow_html=True)
 st.sidebar.text(int(credits_moy))
     
-# HOME PAGE - MAIN CONTENT
+# PAGE PRINCIPAL
 #######################################
 
-#Customer information display : Customer Gender, Age, Family status, Children, …
+#Information client sélectionné
 st.header(" INFORMATION CLIENT SELECTIONNE ")
 
 st.write(" SEXE: ", data_client["CODE_GENDER"].values[0])
@@ -83,7 +79,7 @@ st.write(" AGE : {:.0f} ans".format(int(data_client["DAYS_BIRTH"])))
 st.write("SITUATION DE FAMILLE : ", data_client["NAME_FAMILY_STATUS"].values[0])
 
        
-#Age distribution plot
+#Distribution Age
 data_age=pd.DataFrame(df_age)
 fig, ax = plt.subplots(figsize=(10, 5))
 sns.histplot(data_age["DAYS_BIRTH"], edgecolor = 'k', color="#ADADAD",bins=20)
@@ -99,7 +95,7 @@ st.write("ANNUITE DU CREDIT : {:.0f}".format(data_client["AMT_ANNUITY"].values[0
 st.write("MONTANT DU BIEN POUR LE CREDIT : {:.0f}".format(data_client["AMT_GOODS_PRICE"].values[0]))
 
 
-#Income distribution plot
+#Distribution Revenu
 data_income=pd.DataFrame(df_income)
 fig, ax = plt.subplots(figsize=(10, 5))
 sns.histplot(data_income["AMT_INCOME_TOTAL"], edgecolor = 'k', color="#ADADAD", bins=20)
@@ -108,11 +104,9 @@ ax.set(title='REVENU DES CLIENTS', xlabel='REVENU (EN €)', ylabel='')
 st.pyplot(fig)
 st.markdown("<i>…</i>", unsafe_allow_html=True)
 
-
+#Réponse crédit
 st.subheader(" STATUT DU CLIENT ")
     
-#Customer solvability display
-
 statut=requests.get(f"{API_URL}/prediction/{int(client_id)}").json()
 
 if statut==0:
