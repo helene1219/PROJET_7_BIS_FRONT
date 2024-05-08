@@ -66,11 +66,11 @@ st.sidebar.text(nb_credits)
 
 #Average income
 st.sidebar.markdown("<u>REVENU MOYEN DATA:</u>", unsafe_allow_html=True)
-st.sidebar.text(rev_moy)
+st.sidebar.text(int(rev_moy))
 
 #AMT CREDIT
 st.sidebar.markdown("<u>MONTANT MOYEN DU CREDIT DATA :</u>", unsafe_allow_html=True)
-st.sidebar.text(credits_moy)
+st.sidebar.text(int(credits_moy))
     
 # HOME PAGE - MAIN CONTENT
 #######################################
@@ -118,7 +118,7 @@ statut=requests.get(f"{API_URL}/prediction/{int(client_id)}").json()
 if statut==0:
     html_temp = """
     <div style="background-color: #D54773; padding:2px; border-radius:10px">
-    <h1 style="color: white; font-size:20px; text-align:center">Client Risqué - CREDIT NON ACCORDE</h1>
+    <h1 style="color: white; font-size:20px; text-align:center">CLIENT RISQUE - CREDIT NON ACCORDE</h1>
     </div>
     
     """
@@ -127,7 +127,7 @@ if statut==0:
 else:
     html_temp = """
     <div style="background-color: #D54773; padding:2px; border-radius:10px">
-    <h1 style="color: white; font-size:20px; text-align:center">Client Non Risqué - CREDIT ACCORDE</h1>
+    <h1 style="color: white; font-size:20px; text-align:center">CLIENT NON RISQUE - CREDIT ACCORDE</h1>
     </div>
     
     """
